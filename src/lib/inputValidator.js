@@ -68,11 +68,9 @@ define('inputValidator', ['vent'], function( vent ){
      * @return {self}
      */
     proto.handler = function( ev ){
-        if ( this.func.call(this.elem, ev) ) {
-            this.styleForError(false);
-        } else {
-            this.styleForError(true);
-        }
+        this.styleForError(
+            !this.func.call(this.elem, ev)
+        );
         return this;
     };
 
