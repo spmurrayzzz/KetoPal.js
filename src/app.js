@@ -1,3 +1,11 @@
+/**
+ * app.js
+ *
+ * This module is somewhat superfluous at the moment, its only being used to
+ * expose certain interfaces for debugging purposes. Perhaps it will evolve down
+ * the road to a more useful construct.
+ */
+
 define('app',
 
 ['vent', 'db', 'util', 'template'],
