@@ -36,7 +36,8 @@ function( model, vent, util, tmpl ){
      * @return {void}
      */
     bindEvents = function(){
-        vent.on('ready new-food-added', render);
+        vent.on('ready', render);
+        model.onChange(render);
         view.addEventListener('click', deleteDelegate, true);
     };
 
@@ -51,7 +52,6 @@ function( model, vent, util, tmpl ){
 
         if ( target.classList.contains('close') ) {
             model.del(id);
-            render();
         }
     };
 

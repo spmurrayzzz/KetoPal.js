@@ -6,7 +6,7 @@
  *
  */
 
-define('foodItemModel', ['db', 'util'], function( db, util ) {
+define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
 
     'use strict';
 
@@ -18,6 +18,8 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
         keys,
         getTotals,
         getTotalPercents,
+        onChange,
+        emitChanged,
         sanitize,
         keyPrefix;
 
@@ -48,6 +50,7 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
         item.id = util.guid();
         items.push(sanitize(item));
         db.set(keyPrefix(), JSON.stringify(items));
+        emitChanged();
     };
 
 
@@ -63,6 +66,7 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
             return obj.id !== id;
         });
         db.set(keyPrefix(), JSON.stringify(items));
+        emitChanged();
     };
 
 
@@ -145,6 +149,25 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
     };
 
 
+    /**
+     * Attach `cb` handler to model:change events
+     * @param {Function} cb
+     * @return {void}
+     */
+    onChange = function( cb ){
+        vent.on('food-item-model-changed', cb);
+    };
+
+
+    /**
+     * Fire the model:change event
+     * @return {void}
+     */
+    emitChanged = function(){
+        vent.emit('food-item-model-changed');
+    };
+
+
     init();
 
     return {
@@ -153,7 +176,8 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
         del: del,
         getAll: getAll,
         getTotals: getTotals,
-        getTotalPercents: getTotalPercents
+        getTotalPercents: getTotalPercents,
+        onChange: onChange
     };
 
 });
