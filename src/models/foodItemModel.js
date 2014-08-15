@@ -163,9 +163,7 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
      * Fire the model:change event
      * @return {void}
      */
-    emitChanged = function(){
-        vent.emit('food-item-model-changed');
-    };
+    emitChanged = vent.emit.bind(vent, 'food-item-model-changed');
 
 
     init();
