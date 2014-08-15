@@ -21,8 +21,7 @@ the current day.
 
 - Dependencies first
 ```bash
-sudo npm install -g grunt
-sudo npm install -g bower
+sudo npm install -g grunt-cli bower
 ```
 
 - Application modules next
