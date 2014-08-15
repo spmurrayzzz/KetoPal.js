@@ -73,6 +73,7 @@ main {
     width: 100%;
     margin: 0 auto;
     position: relative;
+    margin-bottom: 100px;
 }
 
     main section h3 {
@@ -110,7 +111,6 @@ main {
 
 .food-log {
     display: none;
-    margin-bottom: 100px;
 }
 
     .food-log #macro-header {
