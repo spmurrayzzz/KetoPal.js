@@ -24,7 +24,7 @@ define('inputValidator', ['vent'], function( vent ){
 
         if ( typeof events.dom !== 'undefined' ) {
             this.events = events.dom.split(' ');
-            this.bindValidator();
+            this.bindDOMEvents();
         }
 
         if ( typeof events.vent !== 'undefined' ) {
@@ -41,7 +41,7 @@ define('inputValidator', ['vent'], function( vent ){
      * Attach the validator handler to all appropriate DOM events
      * @return {self}
      */
-    proto.bindValidator = function(){
+    proto.bindDOMEvents = function(){
         var handler = this.handler.bind(this),
             elem = this.elem;
 
