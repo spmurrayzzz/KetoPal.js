@@ -80,15 +80,14 @@ define('inputValidator', ['vent'], function( vent ){
      * @param {Boolean} isError
      */
     proto.styleForError = function( isError ){
+        var classListMethod;
+
         if ( typeof isError !== 'boolean' ){
             return false;
         }
 
-        if ( isError ) {
-            this.parent.classList.add('error');
-        } else {
-            this.parent.classList.remove('error');
-        }
+        classListMethod = isError ? 'add' : 'remove';
+        this.parent.classList[classListMethod]('error');
 
         return this;
     };
