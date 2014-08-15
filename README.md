@@ -8,6 +8,8 @@ requires tedious management of macronutrient composition.
 Think of the app as a scratch pad; its ephemeral in nature as it only tracks
 the current day.
 
+![KetoPal](https://s3.amazonaws.com/spmurraydata/images/ketopal.png)
+
 ## Dependencies
 
 - Grunt
