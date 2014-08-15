@@ -27,7 +27,6 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
      * @return {void}
      */
     init = function(){
-        console.log('init');
         keyPrefix = function() {
             return 'food-items-' + util.ymd();
         };
