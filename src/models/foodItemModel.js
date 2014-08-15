@@ -27,7 +27,10 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
      * @return {void}
      */
     init = function(){
-        keyPrefix = 'food-items-' + util.ymd();
+        console.log('init');
+        keyPrefix = function() {
+            return 'food-items-' + util.ymd();
+        };
         keys = ['fat', 'protein', 'carbs'];
     };
 
@@ -45,7 +48,7 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
 
         item.id = util.guid();
         items.push(sanitize(item));
-        db.set(keyPrefix, JSON.stringify(items));
+        db.set(keyPrefix(), JSON.stringify(items));
     };
 
 
@@ -60,7 +63,7 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
         items = util.map(items, function( obj ) {
             return obj.id !== id;
         });
-        db.set(keyPrefix, JSON.stringify(items));
+        db.set(keyPrefix(), JSON.stringify(items));
     };
 
 
@@ -69,7 +72,7 @@ define('foodItemModel', ['db', 'util'], function( db, util ) {
      * @return {Object}
      */
     getAll = function(){
-        return JSON.parse(db.get(keyPrefix));
+        return JSON.parse(db.get(keyPrefix()));
     };
 
 
