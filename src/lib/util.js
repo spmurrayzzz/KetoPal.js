@@ -109,14 +109,18 @@ define('util', function(){
      * @param  {Function} iterator
      */
     function each( obj, iterator ) {
-        var key;
+        var key,
+            result;
 
         if ( isArray(obj) ) {
             return obj.forEach(iterator);
         }
 
         for ( key in obj ) {
-            iterator.call(obj, obj[key], key, obj);
+            result = iterator.call(obj, obj[key], key, obj);
+            if ( result === false ) {
+                return;
+            }
         }
     }
 
