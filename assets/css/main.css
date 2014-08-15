@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    color: #333;
+}
+
+#modal-view {
+    width: 100%;
+    background-color: #e8562a;
+    position: fixed;
+    z-index: 12;
+    bottom: 0px;
+    text-align: center;
+    padding: 2px 10px;
+    visibility: visible;
+    -webkkit-transition: height 0.5s linear, max-height 0.5s linear, min-height 0.5s linear, visibility 0.5s linear;
+    transition: height 0.5s linear, max-height 0.5s linear, min-height 0.5s linear, visibility 0.5s linear;
+    color: #f1f1f1;
+}
+
+    #modal-view.show {
+        min-height: 25px;
+        max-height: 100px;
+        height: auto;
+        visibility: visible;
+    }
+
+    #modal-view.hidden {
+        min-height: 0px;
+        max-height: 0px;
+        visibility: hidden;
+    }
+
+    #modal-view .close {
+        position: absolute;
+        right: 10px;
+        top: 0px;
+        display: none;
+    }
+
+    #modal-view.error {
+        background-color: #B00000;
+    }
+
+header {
+
+}
+
+    header h1.title {
+        text-align: center;
+        padding: 20px 0px 20px 0px;
+    }
+
+    header .menu {
+        margin: 10px auto;
+        width: 241px;
+        display: block;
+    }
+
+#macro-footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    padding: 0;
+    margin: 0;
+    z-index: 11;
+    background: #f1f1f1;
+}
+
+main {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+    main section h3 {
+        text-align: center;
+    }
+
+    main section label {
+        display: block;
+        margin: 0 auto;
+        width: 206px;
+    }
+
+    main section input[type="text"] {
+        display: block;
+        margin: 0 auto;
+    }
+
+    main section button {
+        display: block;
+        margin: 30px auto;
+        border-radius: 4px;
+    }
+
+    main section ul {
+        list-style: none;
+    }
+
+.macro-targets {
+     display: none;
+}
+
+.add-food {
+    display: none;
+}
+
+.food-log {
+    display: none;
+    margin-bottom: 100px;
+}
+
+    .food-log #macro-header {
+        text-align: center;
+    }
+
+    .food-log table {
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .food-log table.log tr.header th {
+        background: rgb(246,248,249);
+        background: -moz-linear-gradient(top,  rgba(246,248,249,1) 0%, rgba(229,235,238,1) 50%, rgba(215,222,227,1) 51%, rgba(245,247,249,1) 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(246,248,249,1)), color-stop(50%,rgba(229,235,238,1)), color-stop(51%,rgba(215,222,227,1)), color-stop(100%,rgba(245,247,249,1)));
+        background: -webkit-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
+        background: -o-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
+        background: -ms-linear-gradient(top,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
+        background: linear-gradient(to bottom,  rgba(246,248,249,1) 0%,rgba(229,235,238,1) 50%,rgba(215,222,227,1) 51%,rgba(245,247,249,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f8f9', endColorstr='#f5f7f9',GradientType=0 );
+
+        text-shadow: 0px 1px #f1f1f1;
+        border-bottom: 1px solid #c4c4c4;
+        border-top: 1px solid #c4c4c4;
+        border-right: 1px solid #c4c4c4;
+    }
+
+    .food-log table.log tr.data td {
+        border-top: 1px solid #c4c4c4;
+        border-right: 1px solid #c4c4c4;
+        text-shadow: 0px 1px #f1f1f1;
+        background-color: #e5e5e5;
+    }
+
+    .food-log table.log td .close {
+        position: relative;
+        margin: 0 7px 0 0;
+    }
+
+    .food-log table td.empty-view {
+        text-align: center;
+    }

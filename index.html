@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div id="modal-view" class="hidden">
+        <button type="button" class="close">&times;</button>
+        <p class="content"></p>
+    </div>
+    <table id="macro-footer" class="table"></table>
+    <header>
+        <h1 class='title'>Keto Pal</h1>
+        <div class="btn-toolbar menu">
+            <div class="btn-group">
+                <button class="btn" id="targetsBtn">Targets</button>
+                <button class="btn" id="addItemBtn">Add Item</button>
+                <button class="btn" id="foodLogBtn">Food Log</button>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="macro-targets" id="targetsBtn-view">
+            <h3>Enter your macro targets</h3>
+            <div class="control-group">
+                <label for="target-fat">Fat:</label>
+                <input type="text" name="target-fat" data-key="fat" id="target-fat">
+            </div>
+
+            <div class="control-group">
+                <label for="target-protein">Protein:</label>
+                <input type="text" name="target-protein" data-key="protein" id="target-protein">
+            </div>
+
+            <div class="control-group">
+                <label for="target-carbs">Carbohydrate:</label>
+                <input type="text" name="target-carbs" data-key="carbs" id="target-carbs">
+            </div>
+
+            <button class="btn-primary add-targets" id ="add-targets">Add Macro Targets</button>
+        </section>
+
+
+        <section class="add-food" id="addItemBtn-view">
+            <h3>Enter a food item</h3>
+
+            <div class="control-group">
+                <label for="new-food-name">Name:</label>
+                <input type="text" name="new-food-name" class="new-food-item food-name">
+            </div>
+
+            <div class="control-group">
+                <label for="new-food-fat">Fat:</label>
+                <input type="text" name="new-food-fat" class="new-food-item food-fat">
+            </div>
+
+            <div class="control-group">
+                <label for="new-food-protein">Protein:</label>
+                <input type="text" name="new-food-protein" class="new-food-item food-protein">
+            </div>
+
+            <div class="control-group">
+                <label for="new-food-carbs">Carbs:</label>
+                <input type="text" name="new-food-carbs" class="new-food-item food-carbs">
+            </div>
+
+            <button class="btn-primary add-food-btn" id ="add-targets">Add Food Item</button>
+        </section>
+
+
+        <section class="food-log" id="foodLogBtn-view">
+            <h3>Today's food log</h3>
+            <table class="table log"></table>
+        </section>
+    </main>
+
+<script type="text/template" id="tmpl-targets">
+    <tr>
+        <th>Targets</th>
+        <th>Fat: {{ fat }}g</th>
+        <th>Protein: {{ protein }}g</th>
+        <th>Carbs: {{ carbs }}g</th>
+    </tr>
+</script>
+
+<script type="text/template" id="tmpl-log">
+    <tr class="header">
+        <th>Food</th>
+        <th>Fat</th>
+        <th>Protein</th>
+        <th>Carbohydrate</th>
+    </tr>
+    {{ #items }}
+    <tr class="data">
+        <td>{{ name }}</td>
+        <td>{{ fat }}g</td>
+        <td>{{ protein }}g</td>
+        <td>
+            {{ carbs }}g
+            <button type="button" class="close" data-id={{ id }}>&times;</button>
+        </td>
+    </tr>
+    {{ /items }}
+    {{ ^items }}
+    <tr>
+    <td colspan="4" class="empty-view">No food entries yet today.</td>
+    </tr>
+    {{ /items }}
+    <tr class="header">
+        <th>Total</th>
+        <th>{{ totals.fat }}g</th>
+        <th>{{ totals.protein }}g</th>
+        <th>{{ totals.carbs }}g</th>
+    </tr>
+    <tr class="header">
+        <th>Total %</th>
+        <th>{{ totalPercents.fat }}%</th>
+        <th>{{ totalPercents.protein }}%</th>
+        <th>{{ totalPercents.carbs }}%</th>
+    </tr>
+</script>
+
+<script type="text/javascript" src="assets/js/keto-pal.js"></script>
+</body>
+</html>
