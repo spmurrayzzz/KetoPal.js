@@ -1,9 +1,10 @@
 # Keto Pal - Macronutrient Tracker
 
 This is a completely offline mobile web application that I built as a way to
-assist myself in tracking my macronutrient intake on a day-to-day basis. The
-context for usage is intended for a ketogenic dietary protocol, which often
-requires tedious management of macronutrient composition.
+assist myself and my nutrition clients in tracking my macronutrient intake 
+on a day-to-day basis. The context for usage is intended for a ketogenic 
+dietary protocol, which often requires tedious management of macronutrient
+composition.
 
 Think of the app as a scratch pad; its ephemeral in nature as it only tracks
 the current day.
