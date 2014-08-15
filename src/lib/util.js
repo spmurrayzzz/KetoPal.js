@@ -20,6 +20,15 @@ define('util', function(){
 
 
     /**
+     * Determines whether `obj` is an array
+     * @return {Boolean}
+     */
+    function isArray( obj ){
+        return Object.prototype.toString.call(obj) === '[object Array]';
+    }
+
+
+    /**
      * Returns a sliced version of an array or array-like object
      * @param  {Array-like} arr
      * @param  {Integer} n   offset
@@ -92,6 +101,26 @@ define('util', function(){
     }
 
 
+    /**
+     * Iterates through the object or array, executing iterator callback on each
+     * pass. Callback is passed the element, the index or key, and the parent
+     * iterable item.
+     * @param  {Array|Object} obj
+     * @param  {Function} iterator
+     */
+    function each( obj, iterator ) {
+        var key;
+
+        if ( isArray(obj) ) {
+            return obj.forEach(iterator);
+        }
+
+        for ( key in obj ) {
+            iterator.call(obj, obj[key], key, obj);
+        }
+    }
+
+
     return {
         isNumber: isNumber,
         getById: document.getElementById.bind(document),
@@ -101,7 +130,8 @@ define('util', function(){
         ymd: ymd,
         guid: guid,
         map: map,
-        reduce: reduce
+        reduce: reduce,
+        each: each
     };
 
 });
