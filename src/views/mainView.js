@@ -57,7 +57,7 @@ function( macroModel, vent, util, tmpl, db ){
         var key,
             btn;
 
-        vent.on('macros-updated', function(){
+        macroModel.onChange(function(){
             macroTargets = macroModel.getAll();
             renderFooter();
         });

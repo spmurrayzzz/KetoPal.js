@@ -6,7 +6,7 @@
  *
  */
 
-define('macroModel', ['db'], function( db ) {
+define('macroModel', ['db', 'vent'], function( db, vent ) {
 
     'use strict';
 
@@ -16,6 +16,8 @@ define('macroModel', ['db'], function( db ) {
         del,
         getAll,
         keys,
+        onChange,
+        emitChanged,
         keyPrefix;
 
 
@@ -45,7 +47,9 @@ define('macroModel', ['db'], function( db ) {
      * @param {String} val
      */
     set = function( key, val ){
-        return db.set(keyPrefix + key, val);
+        var result = db.set(keyPrefix + key, val);
+        emitChanged();
+        return result;
     };
 
 
@@ -55,7 +59,9 @@ define('macroModel', ['db'], function( db ) {
      * @return {void}
      */
     del = function( key ){
-        return db.del(keyPrefix + key);
+        var result = db.del(keyPrefix + key);
+        emitChanged();
+        return result;
     };
 
 
@@ -74,13 +80,31 @@ define('macroModel', ['db'], function( db ) {
     };
 
 
+    /**
+     * Attach `cb` handler to model:change events
+     * @param {Function} cb
+     * @return {void}
+     */
+    onChange = function( cb ){
+        vent.on('macro-model-changed', cb);
+    };
+
+
+    /**
+     * Fire the model:change event
+     * @return {void}
+     */
+    emitChanged = vent.emit.bind(vent, 'macro-model-changed');
+
+
     init();
 
     return {
         get: get,
         set: set,
         del: del,
-        getAll: getAll
+        getAll: getAll,
+        onChange: onChange
     };
 
 });

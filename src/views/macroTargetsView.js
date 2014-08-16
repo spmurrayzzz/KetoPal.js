@@ -152,8 +152,6 @@ function( model, vent, util, Validator ){
         for ( key in data ) {
             model.set(key, data[key]);
         }
-
-        vent.emit('macros-updated');
     };
 
 
