@@ -62,7 +62,7 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
     del = function( id ){
         var items = getAll();
 
-        items = util.map(items, function( obj ) {
+        items = items.filter(function( obj ) {
             return obj.id !== id;
         });
         db.set(keyPrefix(), JSON.stringify(items));
@@ -84,7 +84,7 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
      * @return {Object}
      */
     getTotals = function(){
-        var items = getAll(),
+        var items = getAll() || [],
             keys = ['fat', 'protein', 'carbs'],
             output = {
                 fat: 0,
@@ -93,7 +93,7 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
             };
 
         keys.forEach(function( key ){
-            output[key] = util.reduce(items || [], function( memo, obj ){
+            output[key] = items.reduce(function( memo, obj ){
                 return memo + parseInt(obj[key]);
             }, 0);
         });

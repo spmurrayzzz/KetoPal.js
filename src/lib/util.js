@@ -20,15 +20,6 @@ define('util', function(){
 
 
     /**
-     * Determines whether `obj` is an array
-     * @return {Boolean}
-     */
-    function isArray( obj ){
-        return Object.prototype.toString.call(obj) === '[object Array]';
-    }
-
-
-    /**
      * Returns a sliced version of an array or array-like object
      * @param  {Array-like} arr
      * @param  {Integer} n   offset
@@ -61,70 +52,6 @@ define('util', function(){
     }
 
 
-    /**
-     * Returns an array of values by mapping `arr` values through the provided
-     * iterator (`cb`)
-     *
-     * @param  {Array}   arr
-     * @param  {Function} cb
-     * @return {Array}
-     */
-    function map( arr, cb ){
-        var output = [];
-
-        arr.forEach(function( obj ){
-            if ( cb(obj ) ) {
-                output.push(obj);
-            }
-        });
-
-        return output;
-    }
-
-
-    /**
-     * Reduces `arr` to a single value by providing an initial state (memo) and
-     * subsequently transforming that value via `iterator` function
-     * @param  {Array} arr
-     * @param  {Function} iterator
-     * @param  {String|Integer} memo
-     * @return {String|Integer}
-     */
-    function reduce( arr, iterator, memo ) {
-        var retain = memo;
-
-        arr.forEach(function( obj ){
-            retain += iterator(memo, obj);
-        });
-
-        return retain;
-    }
-
-
-    /**
-     * Iterates through the object or array, executing iterator callback on each
-     * pass. Callback is passed the element, the index or key, and the parent
-     * iterable item.
-     * @param  {Array|Object} obj
-     * @param  {Function} iterator
-     */
-    function each( obj, iterator ) {
-        var key,
-            result;
-
-        if ( isArray(obj) ) {
-            return obj.forEach(iterator);
-        }
-
-        for ( key in obj ) {
-            result = iterator.call(obj, obj[key], key, obj);
-            if ( result === false ) {
-                return;
-            }
-        }
-    }
-
-
     return {
         isNumber: isNumber,
         getById: document.getElementById.bind(document),
@@ -133,9 +60,6 @@ define('util', function(){
         slice: slice,
         ymd: ymd,
         guid: guid,
-        map: map,
-        reduce: reduce,
-        each: each
     };
 
 });
