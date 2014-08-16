@@ -52,6 +52,26 @@ define('util', function(){
     }
 
 
+    /**
+     * Iterates through the object, executing iterator callback on each
+     * pass. Callback is passed the element, the index or key, and the parent
+     * iterable item.
+     * @param  {Object} obj
+     * @param  {Function} iterator
+     */
+    function each( obj, iterator ) {
+        var key,
+            result;
+
+        for ( key in obj ) {
+            result = iterator.call(obj, obj[key], key, obj);
+            if ( result === false ) {
+                return;
+            }
+        }
+    }
+
+
     return {
         isNumber: isNumber,
         getById: document.getElementById.bind(document),
@@ -60,6 +80,7 @@ define('util', function(){
         slice: slice,
         ymd: ymd,
         guid: guid,
+        each: each
     };
 
 });
