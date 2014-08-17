@@ -138,12 +138,11 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
      * @return {Object}
      */
     sanitize = function( obj ){
-        var key,
-            output = {};
+        var output = {};
 
-        for ( key in obj ) {
-            output[key.replace(/new-food-/, '')] = obj[key];
-        }
+        util.each(obj, function( item, key ){
+            output[key.replace(/new-food-/, '')] = item;
+        });
 
         return output;
     };
