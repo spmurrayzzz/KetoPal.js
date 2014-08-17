@@ -52,17 +52,14 @@ function( model, vent, util, Validator ){
      * @return {void}
      */
     bindEvents = function(){
-        var key;
-
         addButton.addEventListener('click', submit, true);
-        for ( key in inputs ) {
-            var input = inputs[key];
+        util.each(inputs, function( input, key ){
             validators[key] = new Validator(
                 input,
                 { dom: 'keyup', vent: 'macro-submit' },
                 validateData
             );
-        }
+        });
     };
 
 
@@ -97,15 +94,15 @@ function( model, vent, util, Validator ){
      * @return {Boolean}
      */
     formHasErrors = function(){
-        var key;
+        var hasError = false;
 
-        for ( key in inputs ) {
-            if ( inputs[key].parentNode.classList.contains('error') ) {
-                return true;
+        util.each(inputs, function( elem ){
+            if ( elem.parentNode.classList.contains('error') ) {
+                hasError = true;
             }
-        }
+        });
 
-        return false;
+        return hasError;
     };
 
 
@@ -114,14 +111,12 @@ function( model, vent, util, Validator ){
      * @return {Object}
      */
     getInputData = function(){
-        var key,
-            item,
-            output = {};
+        var output = {};
 
-        for ( key in inputs ) {
+        util.each(inputs, function( item, key ){
             item = inputs[key];
             output[key] = item.value;
-        }
+        });
 
         return output;
     };
@@ -147,11 +142,9 @@ function( model, vent, util, Validator ){
      * @param {Object} data
      */
     storeData = function( data ){
-        var key;
-
-        for ( key in data ) {
-            model.set(key, data[key]);
-        }
+        util.each(data, function( obj, key ){
+            model.set(key, obj);
+        });
     };
 
 

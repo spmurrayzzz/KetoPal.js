@@ -55,18 +55,15 @@ function( macroModel, vent, util, tmpl, db ){
      * @return {void}
      */
     bindEvents = function(){
-        var key,
-            btn;
-
         macroModel.onChange(function(){
             macroTargets = macroModel.getAll();
             renderFooter();
         });
 
-        for ( key in btnElements ) {
+        util.each(btnElements, function( btn, key ){
             btn = btnElements[key].elem;
             btn.addEventListener('click', btnHandler, true);
-        }
+        });
     };
 
 
