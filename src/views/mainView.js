@@ -20,6 +20,7 @@ function( macroModel, vent, util, tmpl, db ){
         macroFooter,
         tmplString,
         btnElements,
+        btnHandler,
         currentlyShown,
         renderFooter;
 
@@ -62,17 +63,23 @@ function( macroModel, vent, util, tmpl, db ){
             renderFooter();
         });
 
-        function btnHandler( ev ){
-            currentlyShown.style.display = 'none';
-            currentlyShown = btnElements[ev.srcElement.id].view;
-            currentlyShown.style.display = 'block';
-            db.set('last-shown-view', ev.srcElement.id);
-        }
-
         for ( key in btnElements ) {
             btn = btnElements[key].elem;
             btn.addEventListener('click', btnHandler, true);
         }
+    };
+
+
+    /**
+     * Event handler for menu button click events
+     * @param {Event} ev
+     * @return {void}
+     */
+    btnHandler = function( ev ){
+        currentlyShown.style.display = 'none';
+        currentlyShown = btnElements[ev.srcElement.id].view;
+        currentlyShown.style.display = 'block';
+        db.set('last-shown-view', ev.srcElement.id);
     };
 
 
