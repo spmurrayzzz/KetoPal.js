@@ -88,13 +88,11 @@ function( macroModel, vent, util, tmpl, db ){
      * @return {void}
      */
     cacheElements = function(){
-        var key;
-
         macroFooter = util.getById('macro-footer');
-        for ( key in btnElements ) {
-            btnElements[key].elem = util.getById(key);
-            btnElements[key].view = util.getById(key + '-view');
-        }
+        util.each(btnElements, function( obj, key ){
+            obj.elem = util.getById(key);
+            obj.view = util.getById(key + '-view');
+        });
     };
 
 
