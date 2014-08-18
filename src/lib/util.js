@@ -20,6 +20,19 @@ define('util', function(){
 
 
     /**
+     * Add a leading zero to single digit numeric strings
+     * @param  {Integer} n
+     * @return {String|Integer}
+     */
+    function pad( n ) {
+        if ( n < 10 && n >= 1 ) {
+            return "0" + n;
+        }
+        return n;
+    }
+
+
+    /**
      * Returns a sliced version of an array or array-like object
      * @param  {Array-like} arr
      * @param  {Integer} n   offset
@@ -35,8 +48,10 @@ define('util', function(){
      * @return {String}
      */
     function ymd(){
-        var date = new Date();
-        return date.toISOString().slice(0,10).replace(/-/g,"");
+        var dt = new Date(),
+            month = pad(dt.getMonth() + 1);
+
+        return "" + dt.getFullYear() + month + dt.getDate();
     }
 
 
