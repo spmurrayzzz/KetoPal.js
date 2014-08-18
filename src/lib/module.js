@@ -72,7 +72,8 @@
             deps,
             canLoad,
             i,
-            j;
+            j,
+            loadedCount = 0;
 
         for (i = queue.length - 1; i >= 0; i--) {
             item = queue[i];
@@ -86,8 +87,11 @@
             if ( canLoad ) {
                 cacheModule(item.moduleName, item.deps, item.module);
                 queue.splice(i, 1);
+                loadedCount++;
             }
         }
+
+        return loadedCount;
     }
 
 
@@ -102,7 +106,8 @@
     this.define = function( moduleName, deps, module ){
 
         var depsType = typeof deps,
-            canLoad = true;
+            canLoad = true,
+            loadedCount = 1;
 
 
         // Check if dependencies were passed, if note make sure
@@ -123,7 +128,10 @@
 
         if ( canLoad ) {
             cacheModule(moduleName, deps, module);
-            checkQueue();
+            while ( loadedCount > 0 ) {
+                loadedCount = checkQueue();
+                console.log(loadedCount);
+            }
         } else {
             queue.push({
                 moduleName: moduleName,
