@@ -130,7 +130,6 @@
             cacheModule(moduleName, deps, module);
             while ( loadedCount > 0 ) {
                 loadedCount = checkQueue();
-                console.log(loadedCount);
             }
         } else {
             queue.push({
