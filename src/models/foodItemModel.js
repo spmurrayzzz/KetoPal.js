@@ -117,7 +117,8 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
             };
 
         keys.forEach(function( key ){
-            sumTotal += totals[key];
+            var cals = key === 'fat' ? 9 : 4;
+            sumTotal += totals[key] * cals;
         });
 
         if ( sumTotal === 0 ) {
@@ -125,7 +126,8 @@ define('foodItemModel', ['db', 'util', 'vent'], function( db, util, vent ) {
         }
 
         keys.forEach(function( key ){
-            output[key] = parseInt((totals[key]/sumTotal)*100);
+            var cals = key === 'fat' ? 9 : 4;
+            output[key] = parseInt((totals[key]*cals/sumTotal)*100);
         });
 
         return output;
